@@ -22,7 +22,7 @@
     </header>
 
     <main>
-        <div class="intro">
+        <div id='quiz-intro'>
             <h1 id="page-title" class="page-title">
                 Beginner JavaScript Quiz
             </h1>
@@ -31,38 +31,42 @@
                 Answer a set of multiple-choice questions with regards to JavaScript! You'll have 75 seconds to answer all the questions, but beware, every wrong answer will result in a loss of 10 seconds...spooky indeed 👻
             </p>
 
-            <button id="start-button" class="btn" type="button">Start Quiz!</button>
+            <button id="start-btn" class=" start-btn btn" type="button">Start Quiz!</button>
         </div>
     </main>
 
     <!-- questions and response options -->
     <div class="quiz">
-        <div>
-            <h2 id="question"></h2>
+        <div id="question-container">
+            <div>
+                <h2 id="question">Question</h2>
+            </div>
         </div>
 
-        <div class="answer-choice">
-            <button id="choice-button" class="btn">
-                <span class="answer-text" data-number="1">Choice</span>
-            </button>
-        </div>
+        <div class="answer-container">
+            <div class="answer-choice">
+                <button id="choice-button" class="btn">
+                    Choice
+                </button>
+            </div>
 
-        <div class="answer-choice">
-            <button id="choice-button" class="btn">
-                <span class="answer-text" data-number="2">Choice</span>
-            </button>
-        </div>
+            <div class="answer-choice">
+                <button id="choice-button" class="btn">
+                    Choice
+                </button>
+            </div>
 
-        <div class="answer-choice">
-            <button id="choice-button" class="btn">
-                <span class="answer-text" data-number="3">Choice</span>
-            </button>
-        </div>
-        
-        <div class="answer-choice">
-            <button id="choice-button" class="btn">
-                <span class="answer-text" data-number="4">Choice</span>
-            </button>
+            <div class="answer-choice">
+                <button id="choice-button" class="btn">
+                    Choice
+                </button>
+            </div>
+            
+            <div class="answer-choice">
+                <button id="choice-button" class="btn">
+                    Choice
+                </button>
+            </div>
         </div>
     </div>
     

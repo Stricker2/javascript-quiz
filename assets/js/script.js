@@ -1,62 +1,94 @@
-const question = document.querySelector("#question");
-const answers = Array.from(document.querySelecterAll(".answer-text"));
+const startButton = document.getElementById('start-btn');
+const pageTitle = document.getElementById('page-title');
+const instructions = document.getElementById('instructions');
+const questionContainer = document.getElementById('question-container');
 
-let correctAnswer = true
-let score = 0
 
-let questions = {
 
-    questionOne: {
+startButton.addEventListener('click', startGame)
+
+function startGame() {
+    console.log('started')
+    startButton.classList.add('hide')
+    pageTitle.classList.add('hide')
+    instructions.classList.add('hide')
+    console.log('this button is hidden')
+   
+};
+
+const questions = [
+
+    {
         question: "What number is the first element in an array attributed to?",
-        choice1: "1",
-        choice2: "4",
-        choice3: "0",
-        choice4: "10",
-        answer: 3,
+        answerChoices: [
+        {choice: "1", correct: false},
+        {choice: "4", correct: false},
+        {choice: "0", correct: true},
+        {choice: "10", correct: false}
+        ]
     },
 
-    questionTwo: {
+    {
         question: "True or false, booleans allow you to find out if an expression is true.",
-        choice1: "True",
-        choice2: "False",
-        answer: 1,
+        answerChoices: [
+        {choice: "True", correct: true},
+        {choice: "False", correct: false}
+        ]
     },
 
-    questionThree: {
+    {
         question: "What does JSON stand for?",
-        choice1: "JavaScript Operator Navigation",
-        choice2: "JavaScript Object Notation",
-        choice3: "JavaScript Omit Null",
-        choice4: "JASON!",
-        answer: 2,
+        answerChoices: [
+        {choice: "JavaScript Operator Navigation", correct: false},
+        {choice: "JavaScript Object Notation", correct: true},
+        {choice: "JavaScript Omit Null", correct: false},
+        {choice: "JASON!", correct: false}
+        ]
     },
 
-    questionFour: {
+    {
         question: "Executing a 'break' statement in JS would do what?",
-        choice1: "Destroy everything",
-        choice2: "Tell you to take a 5 minute break",
-        choice3: "Exit a switch or loop",
-        choice4: "Close the webpage it operates within",
-        answer: 3,
+        answerChoices: [
+        {choice: "Destroy everything", correct: false},
+        {choice: "Tell you to take a 5 minute break", correct: false},
+        {choice: "Exit a switch or loop", correct: true},
+        {choice: "Close the webpage it operates within", correct: false}
+        ]
     },
 
-    questionFive: {
+    {
         question: "Which of the following can you do when using JavaScript operators?",
-        choice1: "Assign values",
-        choice2: "Compare values",
-        choice3: "Perform arithmetic operations",
-        choice4: "All of the above",
-        answer: 4,
+        answerChoices: [
+        {choice: "Assign values", correct: false},
+        {choice: "Compare values", correct: false},
+        {choice: "Perform arithmetic operations", correct: false},
+        {choice: "All of the above", correct: true}
+        ]
     }
-};
+];
 
-startQuiz = function() {
-    questionCounter = 0
-    score = 0
-    availableQuestions = [...questions]
-    newQuestion()
-};
+// function newQuestion() {
+//     var questionIndex = Math.floor(Math.random() * availableQuestions.length)
+//     currentQuestion = availableQuestions[questionIndex]
+//     question.innerText = currentQuestion.question
 
-newQuestion = function() {
+//     answers.forEach(choice = function(){
+//         const number = choice.dataset['number']
+//         choice.innerText = currentQuestion['choice' + number]
+//     })
 
-}
+//     availableQuestions.splice(questionIndex, 1)
+
+//     correctAnswer = true
+// };
+
+// choices.forEach(choice = function() {
+//     choice.addEventListener('click', e = function() {
+//         if(!correctAnswer) 
+//         return
+
+//         correctAnswer = false
+//         const selectedAnswer = e.target
+//         const chosenAnswer = selectedAnswer.dataset['number']
+//     })
+// });
