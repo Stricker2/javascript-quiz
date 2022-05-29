@@ -2,18 +2,33 @@ const startButton = document.getElementById('start-btn');
 const pageTitle = document.getElementById('page-title');
 const instructions = document.getElementById('instructions');
 const questionContainer = document.getElementById('question-container');
-
+const questionEl = document.getElementById('question');
+const choiceButtonEl = document.getElementById('choice-button');
+const answerContainer = document.getElementById('answer-container')
+let questionOrder, questionIndex
 
 
 startButton.addEventListener('click', startGame)
 
 function startGame() {
-    console.log('started')
     startButton.classList.add('hide')
     pageTitle.classList.add('hide')
     instructions.classList.add('hide')
-    console.log('this button is hidden')
-   
+    questionContainer.classList.remove('hide')
+    answerContainer.classList.remove('hide')
+    questionOrder = (i=0, i<questions.length, i++)
+    questionIndex = 0
+
+    newQuestion();   
+};
+
+function newQuestion() {
+    currentQuestion(questionOrder[questionIndex])
+};
+
+function currentQuestion() {
+    questionEl.innerText = questions[questionOrder].question
+    console.log(currentQuestion.innerText)
 };
 
 const questions = [
@@ -66,29 +81,3 @@ const questions = [
         ]
     }
 ];
-
-// function newQuestion() {
-//     var questionIndex = Math.floor(Math.random() * availableQuestions.length)
-//     currentQuestion = availableQuestions[questionIndex]
-//     question.innerText = currentQuestion.question
-
-//     answers.forEach(choice = function(){
-//         const number = choice.dataset['number']
-//         choice.innerText = currentQuestion['choice' + number]
-//     })
-
-//     availableQuestions.splice(questionIndex, 1)
-
-//     correctAnswer = true
-// };
-
-// choices.forEach(choice = function() {
-//     choice.addEventListener('click', e = function() {
-//         if(!correctAnswer) 
-//         return
-
-//         correctAnswer = false
-//         const selectedAnswer = e.target
-//         const chosenAnswer = selectedAnswer.dataset['number']
-//     })
-// });
