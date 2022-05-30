@@ -25,7 +25,7 @@ header p {
 }
 
 /* Landing page/Intro & Instructions */
-#quiz-intro {
+#quiz-intro, .quiz {
     display: block;
     text-align: center;
     position: absolute;
@@ -34,9 +34,24 @@ header p {
     right: 20%;
 }
 
-.intro p {
+#quiz-intro p {
     font-size: 20px;
 }
+
+.hide {
+    display: none;
+}
+
+.answer-container {
+    padding: 5px;
+}
+
+.answer-choice {
+    display: flex;
+    padding: 5px;
+    align-items: left;
+}
+
 
 .btn {
     font-size: 20px;
@@ -46,6 +61,3 @@ header p {
     cursor: pointer;
 }
 
-.hide {
-    display: none;
-}
