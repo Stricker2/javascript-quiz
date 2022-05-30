@@ -20,4 +20,8 @@ Build a quiz made up of several multiple choice questions using HTML, CSS, and J
 
 <img src="./assets/images/webpage-screenshot.png">
 
-Link: 
+Link: https://stricker2.github.io/javascript-quiz/
+
+## Contributors
+
+This project has been produced and worked solely by Andrew Secore
