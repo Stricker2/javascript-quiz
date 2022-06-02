@@ -9,6 +9,7 @@ const choiceButton3 = document.getElementById('choice-button-3');
 const choiceButton4 = document.getElementById('choice-button-4');
 const answerContainer = document.getElementById('answer-container')
 let questionOrder, questionIndex, answerOrder, answerIndex
+questionIndex = 0
 
 startButton.addEventListener('click', startGame)
 
@@ -18,30 +19,43 @@ function startGame() {
     instructions.classList.add('hide')
     questionContainer.classList.remove('hide')
     answerContainer.classList.remove('hide')
-    questionOrder = (i=0, i<questions.length, i++)
-    questionIndex = 0
-    answerOrder = (i=0, i<questions[questionOrder].answerChoices.length, i++)
-    answerIndex = 0
-
-    newQuestion();
-};
-
-function newQuestion() {
+    // questionOrder = (i=0, i<questions.length, i++)
     
-    currentQuestion(questionOrder[questionIndex])
+    // answerOrder = (i=0, i<questions[questionOrder].answerChoices.length, i++)
+    // answerIndex = 0
+
+    renderQuestion();
 };
 
-function currentQuestion(question) {
-    questionEl.innerText = questions[questionOrder].question
-
-    currentAnswers();
+function renderQuestion() {
+    var currentQuestion = questions[questionIndex]
+    questionEl.innerText = currentQuestion.question
+    
+    renderChoices(currentQuestion);
 };
 
-function currentAnswers() {
-    choiceButton1.innerText = questions[questionOrder].answerChoices[0].choice
-    choiceButton2.innerText = questions[questionOrder].answerChoices[1].choice
-    choiceButton3.innerText = questions[questionOrder].answerChoices[2].choice
-    choiceButton4.innerText = questions[questionOrder].answerChoices[3].choice
+function renderChoices(question) {
+    var choices = question.answerChoices
+    var answerButtonTemplate = "choice-button-"
+    for(var i=0; i < choices.length; i++) {
+        var choice = choices[i]
+        var choiceValue = choice.choice
+        var choiceCorrect = choice.correct
+        var currentButton = document.querySelector(`#${answerButtonTemplate}${i+1}`)
+        currentButton.innerText = choiceValue
+
+        currentButton.getAttribute(choiceValue);
+       
+        
+        // if(choiceCorrect=true) {
+        //     window.alert("That is the correct answer!")
+        //     return renderQuestion(question[i+1]);
+        // } else {
+        //     window.alert("That is not the correct answer...")
+        //     return renderQuestion();
+        // }   
+        
+    }
 };
 
 const questions = [
