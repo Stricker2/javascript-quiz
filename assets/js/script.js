@@ -11,11 +11,6 @@ const choiceButton3 = document.getElementById("choice-button-3");
 const choiceButton4 = document.getElementById("choice-button-4");
 const answerContainer = document.getElementById("answer-container");
 
-//  *******************************************************************************************************************
-//  Since you have already selected these buttons above, I placed them into an array
-//  This way, I have access to them globally and can apply individual event listeners on them, so we are no longer
-//  defining them inside the for loop, and so we can avoid the skip bug
-//  *******************************************************************************************************************
 let answersArr = [choiceButton1, choiceButton2, choiceButton3, choiceButton4];
 
 let questionIndex = 0;
@@ -88,24 +83,12 @@ function startGame() {
 }
 
 function renderQuestion() {
-    if(questionIndex <=5) {
-      questionEl.textContent = questions[questionIndex].question;
-      renderChoices();
-    } else {
-      endGame();
-    }  
-    // endGame();
+  questionEl.textContent = questions[questionIndex].question;
+  renderChoices();
 }
 
 function renderChoices() {
   var choices = questions[questionIndex].answerChoices;
-
-  // *******************************************************************************************************************
-  //This can also be a regular for loop, it will do the same thing, just showing you an alternative way to for loop with
-  //forEach.
-  //Here, we select your answerChoices inside the questions array, then we take the index and iterate through our answersArr
-  //(which has your buttons as described above) and set the textcontent and add a value so we can evaluate it in the click event
-  // *******************************************************************************************************************
 
   choices.forEach((choice, index) => {
     answersArr[index].textContent = choice.choice;
@@ -117,9 +100,11 @@ function countdown() {
 
   var timeInterval = setInterval(function() {
 
-    if(timeLeft >= 1) {
+    if(timeLeft >= 1 && questionIndex < 4) {
       timerEl.textContent = 'Time:' + timeLeft
       timeLeft--;
+    } else if (questionIndex > 4) {
+      clearInterval(timeInterval);
     } else {
       timerEl.textContent = 'Time: 0';
       clearInterval(timeInterval);
@@ -130,29 +115,27 @@ function countdown() {
 }
 
 function wrongPenalty() {
-  var decreaseTime = setInterval(function() {
-
-    if(timeLeft >= 1) {
-      timeLeft--;
-    }
-  }, 5000)
+  if(timeLeft >= 1) {
+    timeLeft -= 5;
+  }
 }
 
-// cannot get anything to happen after 5th question is answered
+// INCOMPLETE END GAME FUNCTION
 function endGame() {
 
   questionContainer.classList.add('hide')
   answerContainer.classList.add('hide')
   
-  var highScore = localStorage.getItem('highscore');
-  if(highScore === null) {
-    highScore = 0;
-  }
 
-  if(timeLeft > highScore) {
-    localStorage.setItem('highscore', timeLeft);
-    localStorage.setItem('initials', )
-  }
+  // // var highScore = localStorage.getItem('highscore');
+  // // if(highScore === null) {
+  // //   highScore = 0;
+  // // }
+
+  // // if(timeLeft > highScore) {
+  // //   localStorage.setItem('highscore', timeLeft);
+  // //   localStorage.setItem('initials', )
+  // }
 }
 
 // function validateAnswer() {
@@ -160,24 +143,10 @@ function endGame() {
 //         console.log("correct answer");
 //     } else {
 //         console.log("wrong");
+//         wrongPenalty();
 //     }
-//     //   setTimeout(function () {
-//     questionIndex++;
-//     console.log(questionIndex);
-//     renderQuestion();
-//     //   }, 300);;
 // }
 
-// *******************************************************************************************************************
-// an event listener attached to each button, this will will check, this is not DRY, so there is a lot of repeting code,
-// I would recommend that you consolidate the code into a function and call that function here instead of the repetition
-// *******************************************************************************************************************
-// *******************************************************************************************************************
-// 'this' has been covered, but it looks at the current element (so which button you clicked on), then we evaluate the value
-// and increment the questionIndex and go to the next question
-// By the way, I added the setTimeout and commented it out
-// it sets a delay so the user experience would be nicer, feel free to use it or, it will work either way
-// *******************************************************************************************************************
 choiceButton1.addEventListener("click", function () {
   if (this.value === "true") {
     console.log("correct answer");
@@ -186,9 +155,13 @@ choiceButton1.addEventListener("click", function () {
     wrongPenalty();
   }
   //   setTimeout(function () {
-  questionIndex++;
-  console.log(questionIndex);
-  renderQuestion();
+  if(questionIndex <4) {
+    questionIndex++;
+    console.log(questionIndex);
+    renderQuestion();
+  } else {
+    endGame();
+  }
   //   }, 300);;
 });
 choiceButton2.addEventListener("click", function () {
@@ -199,9 +172,13 @@ choiceButton2.addEventListener("click", function () {
     wrongPenalty();
   }
   //   setTimeout(function () {
-  questionIndex++;
-  console.log(questionIndex);
-  renderQuestion();
+  if(questionIndex <4) {
+    questionIndex++;
+    console.log(questionIndex);
+    renderQuestion();
+  } else {
+    endGame();
+  }
   //   }, 300);;
 });
 choiceButton3.addEventListener("click", function () {
@@ -212,9 +189,13 @@ choiceButton3.addEventListener("click", function () {
     wrongPenalty();
   }
   //   setTimeout(function () {
-  questionIndex++;
-  console.log(questionIndex);
-  renderQuestion();
+  if(questionIndex <4) {
+    questionIndex++;
+    console.log(questionIndex);
+    renderQuestion();
+  } else {
+    endGame();
+  }
   //   }, 300);;
 });
 choiceButton4.addEventListener("click", function () {
@@ -225,8 +206,12 @@ choiceButton4.addEventListener("click", function () {
     wrongPenalty();
   }
   //   setTimeout(function () {
-  questionIndex++;
-  console.log(questionIndex);
-  renderQuestion();
+  if(questionIndex <4) {
+    questionIndex++;
+    console.log(questionIndex);
+    renderQuestion();
+  } else {
+    endGame();
+  }
   //   }, 300);;
 });
