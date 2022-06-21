@@ -1,6 +1,8 @@
 const startButton = document.getElementById("start-btn");
 const pageTitle = document.getElementById("page-title");
 const instructions = document.getElementById("instructions");
+var timerEl = document.getElementById('timer')
+var timeLeft = 75;
 const questionContainer = document.getElementById("question-container");
 let questionEl = document.getElementById("question");
 const choiceButton1 = document.getElementById("choice-button-1");
@@ -81,6 +83,7 @@ function startGame() {
   questionContainer.classList.remove("hide");
   answerContainer.classList.remove("hide");
 
+  countdown();
   renderQuestion();
 }
 
@@ -88,7 +91,7 @@ function renderQuestion() {
     questionEl.textContent = questions[questionIndex].question;
 
     renderChoices();
-    endGame();
+    // endGame();
 }
 
 function renderChoices() {
@@ -107,10 +110,41 @@ function renderChoices() {
   });
 }
 
-var endGame = function() {
-    if(!questions[questionIndex].question) {
-        return false
+function countdown() {
+
+  var timeInterval = setInterval(function() {
+
+    if(timeLeft >= 1) {
+      timerEl.textContent = 'Time:' + timeLeft
+      timeLeft--;
+    } else {
+      timerEl.textContent = 'Time: 0';
+      clearInterval(timeInterval)
     }
+
+  }, 1000)
+}
+
+function wrongPenalty() {
+  var decreaseTime = setInterval(function() {
+
+    if(timeLeft >= 1) {
+      timeLeft--;
+    }
+  }, 5000)
+}
+
+function endGame() {
+  
+  var highScore = localStorage.getItem('highscore');
+  if(highScore === null) {
+    highScore = 0;
+  }
+
+  if(timeLeft > highScore) {
+    localStorage.setItem('highscore', timeLeft);
+    localStorage.setItem('initials', )
+  }
 }
 
 // function validateAnswer() {
@@ -141,6 +175,7 @@ choiceButton1.addEventListener("click", function () {
     console.log("correct answer");
   } else {
     console.log("wrong");
+    wrongPenalty();
   }
   //   setTimeout(function () {
   questionIndex++;
@@ -153,6 +188,7 @@ choiceButton2.addEventListener("click", function () {
     console.log("correct answer");
   } else {
     console.log("wrong");
+    wrongPenalty();
   }
   //   setTimeout(function () {
   questionIndex++;
@@ -165,6 +201,7 @@ choiceButton3.addEventListener("click", function () {
     console.log("correct answer");
   } else {
     console.log("wrong");
+    wrongPenalty();
   }
   //   setTimeout(function () {
   questionIndex++;
@@ -177,6 +214,7 @@ choiceButton4.addEventListener("click", function () {
     console.log("correct answer");
   } else {
     console.log("wrong");
+    wrongPenalty();
   }
   //   setTimeout(function () {
   questionIndex++;
