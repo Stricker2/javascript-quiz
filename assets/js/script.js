@@ -88,9 +88,12 @@ function startGame() {
 }
 
 function renderQuestion() {
-    questionEl.textContent = questions[questionIndex].question;
-
-    renderChoices();
+    if(questionIndex <=5) {
+      questionEl.textContent = questions[questionIndex].question;
+      renderChoices();
+    } else {
+      endGame();
+    }  
     // endGame();
 }
 
@@ -119,7 +122,8 @@ function countdown() {
       timeLeft--;
     } else {
       timerEl.textContent = 'Time: 0';
-      clearInterval(timeInterval)
+      clearInterval(timeInterval);
+      endGame();
     }
 
   }, 1000)
@@ -134,7 +138,11 @@ function wrongPenalty() {
   }, 5000)
 }
 
+// cannot get anything to happen after 5th question is answered
 function endGame() {
+
+  questionContainer.classList.add('hide')
+  answerContainer.classList.add('hide')
   
   var highScore = localStorage.getItem('highscore');
   if(highScore === null) {
