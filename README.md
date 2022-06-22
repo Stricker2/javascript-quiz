@@ -1,4 +1,4 @@
-# JavaScript Quiz (still in development)
+# JavaScript Quiz
 
 ## Description
 
@@ -12,9 +12,11 @@ Build a quiz made up of several multiple choice questions using HTML, CSS, and J
 
 * 'Start Button' clears the landing page and starts the quiz with the first question.
 
-* 'High Scores' button in the top left, however it does not yet load the scores.
+* Upon starting the quiz, timer in the top right counts down from 50. If a question is answered incorrectly then the timer reduces by an additional 5 seconds.
 
-* Quiz is yet to be completed. So far the first question shows, however the subsequent questions cannot yet be cycled through, nor does the timer begin.
+* Score is measured by the amount of seconds left on the timer after the last question has been answered.
+
+* Quiz is over when all questions are answer or the timer hits zero. If a high score has been achieved, the user will be prompted to input their initials and save their score to local storage. If they did not get a high score, they will be told their final score and prompted to refresh the page to play again. 
 
 ## Webpage
 
