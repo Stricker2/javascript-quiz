@@ -2,7 +2,7 @@ const startButton = document.getElementById("start-btn");
 const pageTitle = document.getElementById("page-title");
 const instructions = document.getElementById("instructions");
 var timerEl = document.getElementById('timer')
-var timeLeft = 75;
+var timeLeft = 50;
 const questionContainer = document.getElementById("question-container");
 let questionEl = document.getElementById("question");
 const choiceButton1 = document.getElementById("choice-button-1");
@@ -80,6 +80,7 @@ function startGame() {
 
   countdown();
   renderQuestion();
+  console.log(questionIndex)
 }
 
 function renderQuestion() {
@@ -100,15 +101,17 @@ function countdown() {
 
   var timeInterval = setInterval(function() {
 
-    if(timeLeft >= 1 && questionIndex < 4) {
-      timerEl.textContent = 'Time:' + timeLeft
+    if(timeLeft >= 1) {
+      timerEl.textContent = 'Time:' + ' ' + timeLeft
       timeLeft--;
-    } else if (questionIndex > 4) {
-      clearInterval(timeInterval);
     } else {
       timerEl.textContent = 'Time: 0';
       clearInterval(timeInterval);
       endGame();
+    }
+
+    if(questionIndex > 4) {
+      clearInterval(timeInterval)
     }
 
   }, 1000)
@@ -123,8 +126,10 @@ function wrongPenalty() {
 // INCOMPLETE END GAME FUNCTION
 function endGame() {
 
+  questionIndex = 5
   questionContainer.classList.add('hide')
   answerContainer.classList.add('hide')
+  console.log(questionIndex)
   
 
   // // var highScore = localStorage.getItem('highscore');
