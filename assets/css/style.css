@@ -25,7 +25,7 @@ header p {
 }
 
 /* Landing page/Intro & Instructions */
-#quiz-intro, .quiz {
+#quiz-intro, .quiz, .high-score {
     display: block;
     text-align: center;
     position: absolute;
@@ -38,10 +38,6 @@ header p {
     font-size: 20px;
 }
 
-.hide {
-    display: none;
-}
-
 .answer-container {
     padding: 5px;
 }
@@ -52,6 +48,23 @@ header p {
     align-items: left;
 }
 
+.high-score {
+    font-size: 20px;
+    padding: 15px 30px;
+}
+
+.high-score button {
+    margin-bottom: 5px;
+}
+
+.input {
+    font-size: 20px;
+    background-color: #fcdc00;
+    border: 3px solid black;
+    padding: 15px 30px;
+    margin-bottom: 5px;
+    text-align: center;
+}
 
 .btn {
     font-size: 20px;
@@ -59,5 +72,9 @@ header p {
     border: 3px solid black;
     padding: 15px 30px;
     cursor: pointer;
+}
+
+.hide {
+    display: none;
 }
 

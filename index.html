@@ -11,10 +11,6 @@
 <body>
     <!-- landing -->
     <header>
-        <div id="high-scores" class="high-scores">
-            <a href="#" id="high-score-btn">High Scores</a>
-        </div>
-
         <div id="timer" class="timer">
             <p id="time-text">Time: </p>
             <p id="time-sec">50</p>
@@ -68,6 +64,14 @@
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- high score input -->
+    <div id="high-score" class="high-score hide">
+        <p id="score-declaration" class="score-declaration"></p>
+        <p id="initials-prompt"></p>
+        <input id="initials-input" class="input">
+        <button id="save-score" class="btn" type="button">Save</button>
     </div>
     
     <script src="./assets/js/script.js"></script>

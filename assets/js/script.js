@@ -1,15 +1,22 @@
-const startButton = document.getElementById("start-btn");
-const pageTitle = document.getElementById("page-title");
-const instructions = document.getElementById("instructions");
+const startButton = document.getElementById("start-btn")
+const pageTitle = document.getElementById("page-title")
+const instructions = document.getElementById("instructions")
 var timerEl = document.getElementById('timer')
 var timeLeft = 50;
-const questionContainer = document.getElementById("question-container");
-let questionEl = document.getElementById("question");
-const choiceButton1 = document.getElementById("choice-button-1");
-const choiceButton2 = document.getElementById("choice-button-2");
-const choiceButton3 = document.getElementById("choice-button-3");
-const choiceButton4 = document.getElementById("choice-button-4");
-const answerContainer = document.getElementById("answer-container");
+const questionContainer = document.getElementById("question-container")
+let questionEl = document.getElementById("question")
+const answerContainer = document.getElementById("answer-container")
+const choiceButton1 = document.getElementById("choice-button-1")
+const choiceButton2 = document.getElementById("choice-button-2")
+const choiceButton3 = document.getElementById("choice-button-3")
+const choiceButton4 = document.getElementById("choice-button-4")
+var finalScore = document.getElementById('score-declaration')
+var highScorePrompt = document.getElementById('high-score')
+var initialsPrompt = document.getElementById('initials-prompt')
+var initialsInput = document.getElementById('initials-input')
+var saveScoreBtn = document.getElementById('save-score')
+var playAgainBtn = document.getElementById('restart')
+
 
 let answersArr = [choiceButton1, choiceButton2, choiceButton3, choiceButton4];
 
@@ -123,34 +130,33 @@ function wrongPenalty() {
   }
 }
 
-// INCOMPLETE END GAME FUNCTION
 function endGame() {
-
   questionIndex = 5
   questionContainer.classList.add('hide')
   answerContainer.classList.add('hide')
-  console.log(questionIndex)
+  var highScore = localStorage.getItem('highscore');
+
+  if(highScore === null) {
+    highScore = 0;
+  }
+
+  if(timeLeft > highScore) {
+    highScorePrompt.classList.remove('hide')
+    finalScore.innerText = "Congratulations! You got a new high score of " + timeLeft + "!"
+    initialsPrompt.innerText = "Enter your initials below to save your new high score!"
+  } else {
+    highScorePrompt.classList.remove('hide')
+    initialsInput.classList.add('hide')
+    saveScoreBtn.classList.add('hide')
+    finalScore.innerText = "You got a score of " + timeLeft + "! You did not beat your high score. Refresh the page to play again."
+  }
+
+  saveScoreBtn.addEventListener('click', function() {
+    localStorage.setItem('highscore', timeLeft);
+    localStorage.setItem('initials', initialsInput.value)
+  })
   
-
-  // // var highScore = localStorage.getItem('highscore');
-  // // if(highScore === null) {
-  // //   highScore = 0;
-  // // }
-
-  // // if(timeLeft > highScore) {
-  // //   localStorage.setItem('highscore', timeLeft);
-  // //   localStorage.setItem('initials', )
-  // }
 }
-
-// function validateAnswer() {
-//     if (this.value === "true") {
-//         console.log("correct answer");
-//     } else {
-//         console.log("wrong");
-//         wrongPenalty();
-//     }
-// }
 
 choiceButton1.addEventListener("click", function () {
   if (this.value === "true") {
@@ -159,16 +165,17 @@ choiceButton1.addEventListener("click", function () {
     console.log("wrong");
     wrongPenalty();
   }
-  //   setTimeout(function () {
-  if(questionIndex <4) {
-    questionIndex++;
-    console.log(questionIndex);
-    renderQuestion();
-  } else {
-    endGame();
-  }
-  //   }, 300);;
+  setTimeout(function () {
+    if(questionIndex <4) {
+      questionIndex++;
+      console.log(questionIndex);
+      renderQuestion();
+    } else {
+      endGame();
+    }
+  }, 300);
 });
+
 choiceButton2.addEventListener("click", function () {
   if (this.value === "true") {
     console.log("correct answer");
@@ -176,16 +183,17 @@ choiceButton2.addEventListener("click", function () {
     console.log("wrong");
     wrongPenalty();
   }
-  //   setTimeout(function () {
-  if(questionIndex <4) {
-    questionIndex++;
-    console.log(questionIndex);
-    renderQuestion();
-  } else {
-    endGame();
-  }
-  //   }, 300);;
+  setTimeout(function () {
+    if(questionIndex <4) {
+      questionIndex++;
+      console.log(questionIndex);
+      renderQuestion();
+    } else {
+      endGame();
+    }
+  }, 300);
 });
+
 choiceButton3.addEventListener("click", function () {
   if (this.value === "true") {
     console.log("correct answer");
@@ -193,16 +201,17 @@ choiceButton3.addEventListener("click", function () {
     console.log("wrong");
     wrongPenalty();
   }
-  //   setTimeout(function () {
-  if(questionIndex <4) {
-    questionIndex++;
-    console.log(questionIndex);
-    renderQuestion();
-  } else {
-    endGame();
-  }
-  //   }, 300);;
+  setTimeout(function () {
+    if(questionIndex <4) {
+      questionIndex++;
+      console.log(questionIndex);
+      renderQuestion();
+    } else {
+      endGame();
+    }
+  }, 300);
 });
+
 choiceButton4.addEventListener("click", function () {
   if (this.value === "true") {
     console.log("correct answer");
@@ -210,13 +219,13 @@ choiceButton4.addEventListener("click", function () {
     console.log("wrong");
     wrongPenalty();
   }
-  //   setTimeout(function () {
-  if(questionIndex <4) {
-    questionIndex++;
-    console.log(questionIndex);
-    renderQuestion();
-  } else {
-    endGame();
-  }
-  //   }, 300);;
+  setTimeout(function () {
+    if(questionIndex <4) {
+      questionIndex++;
+      console.log(questionIndex);
+      renderQuestion();
+    } else {
+      endGame();
+    }
+  }, 300);
 });
