@@ -34,13 +34,12 @@ const questions = [
   },
 
   {
-    question:
-      "True or false, booleans allow you to find out if an expression is true.",
+    question: "What is a JavaScript Array?",
     answerChoices: [
-      { choice: "True", correct: "true" },
-      { choice: "False", correct: "false" },
-      { choice: "True", correct: "false" },
-      { choice: "False", correct: "false" },
+      { choice: "A special variable used to hold multiple values", correct: "true" },
+      { choice: "A ray gun built with JavaScript", correct: "false" },
+      { choice: "Text used to describe code", correct: "false" },
+      { choice: "Code that represents a true or false value", correct: "false" },
     ],
   },
 
